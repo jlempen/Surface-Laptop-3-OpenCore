@@ -120,6 +120,37 @@ The `Secure Boot` setting ***must be disabled to boot macOS***. I also recommend
 </details>
 
 <details>
+  <summary>Downgrading the UEFI firmware</summary>
+
+## Downgrading the UEFI firmware
+In order to fix the skipping/lagging trackpad in macOS and make the trackpad and keyboard work after hibernation, you must downgrade your UEFI firmware to the last known working version `13.101.140.0`.
+
+1. Boot with a Linux Live USB stick, preferably a Debian, Arch or Fedora based distribution (I use the Arch-based Manjaro).
+2. Download and unzip the compressed firmware archive [SL3_FW13.101.140.0.zip](https://github.com/jlempen/Surface-Laptop-3-OpenCore/blob/main/UEFI%20Firmware/SL3_FW13.101.140.0.zip) from this repository.
+3. Add the line `OnlyTrusted=false` to the `/etc/fwupd/daemon.conf` config file.
+4. Open a terminal and navigate to the folder where you extracted the firmware files.
+5. Connect your Surface device to a power supply.
+6. Copy the following lines and paste them into the terminal:
+```
+for f in *; do 
+  sudo fwupdmgr install --allow-older --allow-reinstall --no-reboot-check "$f"
+done
+```
+7. Close the terminal and reboot the computer.
+
+For some firmware files, the `fwupdmgr` tool may complain that it is unable to find a matching device. This is normal, as not all Surface Laptop 3 models use the exact same hardware, thus the compressed firmware archive contains all the required files for all models.
+
+The Surface Laptop 3 will reboot and downgrade all UEFI firmwares at once, which takes around 10 minutes. You'll see progress bars with different colours depending on which type of firmware is being flashed.
+Once the process is done, your laptop will restart a few times and seem to hang on the Surface logo for 20 or 30 seconds each time, this is normal. Then it will restart for good to your OpenCore picker.
+
+Now restart while holding the F4/Volume Up key to check the firmware version in the UEFI. In the Firmware section, `System UEFI` should now show `13.101.140`.
+
+Reboot and you're done.
+
+If you are using Windows on the laptop, you'll have to find a way to prevent Windows Update from updating the firmware to the latest version again! I don't know how to do that, but DuckDuckGo is your friend.
+</details>
+
+<details>
   <summary>Disabling Sleep and enabling Hibernate</summary>
   
 ## Disabling Sleep and enabling Hibernate
