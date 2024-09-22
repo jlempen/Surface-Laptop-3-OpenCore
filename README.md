@@ -142,6 +142,15 @@ sudo pmset -a hibernatemode 25
 </details>
 
 <details>
+  <summary>Fix broken Bluetooth on Wake from Hibernation</summary>
+  
+## Fix broken Bluetooth on Wake from Hibernation
+After the device wakes up from Hibernation, Bluetooth may be broken / unable to connect.
+
+A very simple fix for this issue is to [download and install Bluesnooze](https://github.com/odlp/bluesnooze). Launch the app, enable `Launch at login` and you're done!
+</details>
+
+<details>
   <summary>Undervolting to reduce heat and improve performance</summary>
   
 ## Undervolting to reduce heat and improve performance
