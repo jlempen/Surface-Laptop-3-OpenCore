@@ -182,20 +182,6 @@ A very simple fix for this issue is to [download and install Bluesnooze](https:/
 </details>
 
 <details>
-  <summary>Undervolting to reduce heat and improve performance</summary>
-  
-## Undervolting to reduce heat and improve performance
-The `VoltageShift.kext` undervolting tool is already included and enabled in this repository's `Kexts` folder. To be able to launch the `voltageshift` command line tool from anywhere, copy [VoltageShift from the Tools folder](https://github.com/jlempen/Surface-Go-2-OpenCore/blob/main/Tools/VoltageShift-EFI.zip) to your `/usr/local/bin` folder by entering `sudo cp voltageshift /usr/local/bin/` in the macOS terminal after navigating to the folder where you downloaded and unzipped the `voltageshift` executable file.
-
-Please refer to the instructions found in the [VoltageShift repository](https://github.com/sicreative/VoltageShift), as well as to the excellent howto found in [zearp's repository](https://github.com/zearp/Nucintosh#undervolting).
-
-Once you have found an undervolting configuration that works well on your device, make it permanent by entering the following command in the terminal after navigating to the folder where you downloaded and unzipped the `VoltageShift-EFI.zip` file:
-> sudo ./voltageshift buildlaunchd -120 -50 -80 0 0 0 1 28 18 0.002 60
-
-The above settings are quite conservative and seem to work well on pretty much every Surface Laptop 3.
-</details>
-
-<details>
   <summary>Enabling native HiDPI display settings in macOS</summary>
   
 ## Enabling native HiDPI display settings in macOS
