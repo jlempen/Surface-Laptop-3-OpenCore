@@ -46,7 +46,7 @@ Windows and Linux should be detected automagically by the OpenCore boot loader e
 | ---------------- | ---------------------------------- |
 | CPU              | Intel Core i7-1065G7 or Intel Core i5-1035G7 |
 | iGPU             | Intel Iris Plus Graphics |
-| Audio            | Realtek ALC |
+| Audio            | Realtek ALC274 |
 | RAM              | 8 or 16 GB RAM |
 | Wifi + Bluetooth | Wifi6 AX200, Bluetooth 5.0 |
 | Storage          | Kioxia/Toshiba/SK Hynix PCIe NVMe 2230 SSD |
