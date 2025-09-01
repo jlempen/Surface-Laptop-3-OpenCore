@@ -93,19 +93,6 @@
 			<key>IOProviderClass</key>
 			<string>IOACPIPlatformDevice</string>
 		</dict>
-		<key>Surface Management Engine</key>
-		<dict>
-			<key>CFBundleIdentifier</key>
-			<string>com.xavier.BigSurface</string>
-			<key>IOClass</key>
-			<string>SurfaceManagementEngineDriver</string>
-			<key>IOPCIMatch</key>
-			<string>0x34e48086 0x9d3e8086</string>
-			<key>IOProbeScore</key>
-			<integer>400</integer>
-			<key>IOProviderClass</key>
-			<string>IOPCIDevice</string>
-		</dict>
 		<key>Surface Serial Hub</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
