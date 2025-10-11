@@ -156,7 +156,7 @@ sudo nano /etc/fwupd/fwupd.conf
 6. Copy the following lines and paste them into the terminal:
 ```
 for f in *; do 
-  sudo fwupdmgr install --allow-older --allow-reinstall --no-reboot-check "$f"
+  sudo fwupdmgr install --force --allow-older --allow-reinstall --no-reboot-check "$f"
 done
 ```
 7. Close the terminal and reboot into Linux once more.
