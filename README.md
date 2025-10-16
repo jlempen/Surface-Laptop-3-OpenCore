@@ -7,7 +7,7 @@ macOS on the Microsoft Surface Laptop 3 thanks to [Acidanthera's OpenCore bootlo
 | Software         | Version                            |
 | ---------------- | ---------------------------------- |
 | Target OS        | Apple macOS 13 Ventura, (14 Sonoma and 15 Sequoia) |
-| OpenCore         | [MOD-OC v1.0.5](https://github.com/wjz304/OpenCore_NO_ACPI_Build/releases/download/1.0.5_b56882c/OpenCore-Mod-1.0.5-RELEASE.zip) |
+| OpenCore         | [MOD-OC v1.0.6](https://github.com/wjz304/OpenCore_NO_ACPI_Build/releases/download/1.0.6_9cb2b0d/OpenCore-Mod-1.0.6-RELEASE.zip) |
 | SMBIOS           | MacBookPro16,2 |
 | SSD format       | APFS file system, GPT partition table |
 
@@ -19,12 +19,15 @@ Apart from ACPI S3 Sleep which is broken, everything on the `Intel 13.5-Inch and
 The battery runtime is around five hours.
 
 > [!TIP]
-> I really recommend installing `macOS 13 Ventura` rather than the newer `macOS 14 Sonoma` or `macOS 15 Sequoia`. The builtin Intel Wireless chip works almost perfectly with Apple's iServices and Continuity features on Ventura while those features are partially broken at the moment on newer versions of macOS.
+> I highly recommend installing `macOS 13 Ventura` rather than the newer `macOS 14 Sonoma` or `macOS 15 Sequoia`. The builtin Intel Wireless chip works almost perfectly with Apple's iServices and Continuity features on Ventura while those features are partially broken at the moment on newer versions of macOS.
 > 
 > In addition, later versions of macOS 14 Sonoma and especially macOS 15 Sequoia also seem to exhibit all kinds of issues and annoyances such as a garbled cursor, sketchy Bluetooth and issues when waking from hibernation.
 
 > [!IMPORTANT]
 > For macOS to be able to boot on the Surface Laptop 3, the `Secure Boot` option _**must be disabled**_ [in the UEFI](https://github.com/jlempen/Surface-Laptop-3-OpenCore/blob/main/README.md#uefi-settings). The boot screen will then display a large red bar with a padlock symbol at the top of the display when Secure Boot is disabled.
+
+> [!IMPORTANT]
+> If your Surface Laptop 3 randomly shuts down during the macOS installation process, disable the `DisableBDPROCHOT.efi` driver in the `UEFI -> Drivers` section of your `config.plist` file.
 
 > [!IMPORTANT]
 > The keyboard and trackpad are now working in the installer as well as in the installed OS, but the trackpad will be lagging/skipping every few seconds. Furthermore, the keyboard and trackpad will be unresponsive after resuming from hibernation. To fix those issues, you **MUST** downgrade the firmware of your `Surface Laptop 3`. To do so, [follow these instructions](https://github.com/jlempen/Surface-Laptop-3-OpenCore?tab=readme-ov-file#downgrading-the-uefi-firmware).
