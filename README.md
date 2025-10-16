@@ -282,11 +282,18 @@ Keep in mind that once the Surface Laptop 3 hibernates, you need to let it hiber
   <summary>Enabling the AirportItlwm.kext driver for the Intel Wireless Card in macOS Sequoia</summary>
   
 ## Enabling the AirportItlwm.kext driver for the Intel Wireless Card in macOS Sequoia
-Disable the following kext in the `config.plist` file:
+
+## Step One
+Download and install the latest version of the [OpenCore Legacy Patcher (OCLP)](https://github.com/dortania/OpenCore-Legacy-Patcher/releases).
+
+Now open the `Kernel -> Add` tab in your `config.plist` file.
+
+Disable the following kext:
 ```
 itlwm.kext
 ```
-Enable the following kexts in the `config.plist` file:
+
+Then enable the following kexts:
 
 ```
 IOSkywalkFamily.kext
@@ -296,12 +303,25 @@ AMFIPass.kext
 AirportItlwm-Sequoia.kext
 ```
 
-Then head over to `Kernel -> Block` in your `config.plist` file and enable the `com.apple.iokit.IOSkywalkFamily` item.
+Now head over to the `Kernel -> Block` tab and enable the `com.apple.iokit.IOSkywalkFamily` item.
 
-For the Intel wireless card to work in macOS Sequoia, you'll also need to download and install the latest version of the [OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/releases). Then launch the patcher and run the `Post-install Root Patch` for modern wireless and reboot when instructed to do so. Your Intel wireless card should work now!
+## Step Two
+Open the `DeviceProperties` tab in your `config.plist` file. 
+
+Disable the `PciRoot(0x0)/Pci(0x14,0x3)` item (your real Intel wireless card) by typing two hash signs at the beginning of the line: `##PciRoot(0x0)/Pci(0x14,0x3)`. Now enable the `#PciRoot(0x0)/Pci(0x14,0x3)` item (a spoofed Broadcom wireless card) by removing the hash sign at the beginning of the line: `PciRoot(0x0)/Pci(0x14,0x3)`.
+
+Save the `config.plist` file and restart your laptop.
+
+Back in macOS, launch the OpenCore Legacy Patcher (OCLP) and run the `Post-Install Root Patch` for modern wireless but don't reboot when instructed to do so! 
+
+Open the `DeviceProperties` tab in your `config.plist` file once more.
+
+Now revert the changes you made earlier by disabling the `PciRoot(0x0)/Pci(0x14,0x3)` item (which is now the spoofed Broadcom wireless card) by typing a hash sign at the beginning of the line: `#PciRoot(0x0)/Pci(0x14,0x3)`. Then enable the `##PciRoot(0x0)/Pci(0x14,0x3)` item (which is your real Intel wireless card) by removing the two hash signs at the beginning of the line: `PciRoot(0x0)/Pci(0x14,0x3)`.
+
+Save the `config.plist` file and reboot once more. Your Intel wireless card should work now!
 
 > [!IMPORTANT]
-> This last step needs to be repeated after every macOS update!
+> You'll need to repeat Step Two after every macOS update!
 </details>
 
 <details>
