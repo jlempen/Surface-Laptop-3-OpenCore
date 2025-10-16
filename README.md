@@ -27,7 +27,8 @@ The battery runtime is around five hours.
 > For macOS to be able to boot on the Surface Laptop 3, the `Secure Boot` option _**must be disabled**_ [in the UEFI](https://github.com/jlempen/Surface-Laptop-3-OpenCore/blob/main/README.md#uefi-settings). The boot screen will then display a large red bar with a padlock symbol at the top of the display when Secure Boot is disabled.
 
 > [!IMPORTANT]
-> If your Surface Laptop 3 randomly shuts down during the macOS installation process, disable the `DisableBDPROCHOT.efi` driver in the `UEFI -> Drivers` section of your `config.plist` file.
+> If your Surface Laptop 3 randomly shuts down due to overheating during the macOS installation process, disable the `DisableBDPROCHOT.efi` driver in the `UEFI -> Drivers` section of your `config.plist` file.
+> Once macOS is up and running, you can enable the driver again.
 
 > [!IMPORTANT]
 > The keyboard and trackpad are now working in the installer as well as in the installed OS, but the trackpad will be lagging/skipping every few seconds. Furthermore, the keyboard and trackpad will be unresponsive after resuming from hibernation. To fix those issues, you **MUST** downgrade the firmware of your `Surface Laptop 3`. To do so, [follow these instructions](https://github.com/jlempen/Surface-Laptop-3-OpenCore?tab=readme-ov-file#downgrading-the-uefi-firmware).
