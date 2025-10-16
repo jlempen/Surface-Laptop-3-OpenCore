@@ -2,7 +2,14 @@
 
 # Surface-Laptop-3-OpenCore
 macOS on the Microsoft Surface Laptop 3 thanks to [Acidanthera's OpenCore bootloader](https://github.com/acidanthera/OpenCorePkg).
-  
+
+# Latest News
+* (20251016) Added resources and instructions to enable the `AirportItlwm.kext` on macOS Sonoma
+* (20251016) Added the `DisableBDPROCHOT.efi` driver to fix the throttling issues
+* (20251011) Fixed issues with the firmware downgrade by adding the `--force` argument to the `fwupdmgr` command line
+* (20250901) Disabled the touchscreen to put an end to the dreaded overheating issues
+* (20250620) Fixed external displays over USB-C
+
 ## Software Specifications
 | Software         | Version                            |
 | ---------------- | ---------------------------------- |
