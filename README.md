@@ -52,7 +52,9 @@ Please be aware that all `PlatformInfo` and `SMBIOS` information was removed fro
 
 An UEFI firmware released by Micro$oft in August 2023 broke the Surface Laptop 3's trackpad in macOS in several ways. Downgrading the UEFI firmware to the last known working version `13.101.140.0` is required to fix the trackpad and hibernate mode 25 on macOS. See the detailed instructions below to easily downgrade the UEFI firmware. This needs to be done before installing any version of macOS or you won't have a working trackpad and/or keyboard during installation.
 
-`AirportItlwm-Ventura.kext`, `AirportItlwm-Sonoma140.kext` and `AirportItlwm-Sonoma144.kext` from the [OpenIntelWireless repo](https://github.com/OpenIntelWireless/itlwm) are required to enable the Wifi chip. This EFI will dynamically load the appropriate kext for macOS Ventura or Sonoma depending on the running kernel. No need to manually replace the kext file when updating your version of macOS. As the Intel Wifi chip does not yet work with the `AirportItlwm.kext` in macOS Sequoia, you'll need to use the `Itlwm.kext` and its companion app [HeliPort](https://github.com/OpenIntelWireless/HeliPort/releases) to connect to a Wifi network. You'll find the latest stable `HeliPort.dmg` in the [Tools folder](https://github.com/jlempen/Surface-Laptop-3-OpenCore/blob/main/Tools/HeliPort.dmg) of this repo. This EFI will dynamically load the `Itlwm.kext` instead of `AirportItlwm.kext` when you boot into macOS Sequoia.
+`AirportItlwm-Ventura.kext`, `AirportItlwm-Sonoma140.kext` and `AirportItlwm-Sonoma144.kext` from the [OpenIntelWireless repo](https://github.com/OpenIntelWireless/itlwm) are drivers required to enable the Wifi chip. This EFI will dynamically load the appropriate kext for macOS Ventura or Sonoma depending on the running kernel. No need to manually replace the kext file when updating your version of macOS. In macOS Sequoia, you'll need to use the `Itlwm.kext` driver and its companion app [HeliPort](https://github.com/OpenIntelWireless/HeliPort/releases) to connect to a Wifi network. You'll find the latest stable `HeliPort.dmg` in the [Tools folder](https://github.com/jlempen/Surface-Laptop-3-OpenCore/blob/main/Tools/HeliPort.dmg) of this repo. This EFI will dynamically load the `Itlwm.kext` driver instead of `AirportItlwm.kext` when you boot into macOS Sequoia.
+
+There is now a hack to enable the `AirportItlwm.kext` wireless driver on macOS Sequoia, but this method requires root patching. All the resources neccessary are already included in this EFI. If you wish to replace the `Itlwm.kext` driver with the `AirportItlwm.kext` driver on macOS Sequoia, [head over to the instructions](https://github.com/jlempen/Surface-Laptop-3-OpenCore/blob/main/README.md#enabling_the_airportitlwm.kext_driver_for_the_intel_wireless_card_in_macos_sequoia).
 
 This repository uses the unofficial OpenCore_NO_ACPI_Build fork of OpenCore by [btwise](https://gitee.com/btwise/OpenCore_NO_ACPI), wich is not endorsed by Acidanthera (the dev team behind OpenCore). The main (and only) difference between this fork and the official OpenCore version is that it allows to prevent ACPI injection (e.g. patches, tables, boot parameters) into other OSes besides macOS.
 
@@ -274,6 +276,32 @@ sudo pmset -a hibernatemode 25
 It's also a good idea to reset the NVRAM before rebooting into macOS. To do so, press the space bar in the OpenCore picker and use the arrow keys to select `Reset NVRAM`.
 
 Keep in mind that once the Surface Laptop 3 hibernates, you need to let it hibernate for a couple of minutes before waking it up. Failing to do so will disrupt hibernation and the device will hang. You'll have to turn it off forcefully by pressing on the power button for 10 seconds. Sometimes you even need to press the power button for up to 20 seconds to restart the laptop.
+</details>
+
+<details>
+  <summary>Enabling the AirportItlwm.kext driver for the Intel Wireless Card in macOS Sequoia</summary>
+  
+## Enabling the AirportItlwm.kext driver for the Intel Wireless Card in macOS Sequoia
+Disable the following kext in the `config.plist` file:
+```
+itlwm.kext
+```
+Enable the following kexts in the `config.plist` file:
+
+```
+IOSkywalkFamily.kext
+IO80211FamilyLegacy.kext
+IO80211FamilyLegacy.kext/Contents/PlugIns/AirPortBrcmNIC.kext
+AMFIPass.kext
+AirportItlwm-Sequoia.kext
+```
+
+Then head over to `Kernel -> Block` in your `config.plist` file and enable the `com.apple.iokit.IOSkywalkFamily` item.
+
+For the Intel wireless card to work in macOS Sequoia, you'll also need to download and install the latest version of the [OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/releases). Then launch the patcher and run the `Post-install Root Patch` for modern wireless and reboot when instructed to do so. Your Intel wireless card should work now!
+
+> [!IMPORTANT]
+> This last step needs to be repeated after every macOS update!
 </details>
 
 <details>
