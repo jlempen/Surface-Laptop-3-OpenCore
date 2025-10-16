@@ -236,6 +236,29 @@
         <dict>
             <key>Add</key>
             <dict>
+                <key>#PciRoot(0x0)/Pci(0x14,0x3)</key>
+                <dict>
+                    <key>IOName</key>
+                    <string>pci14e4,43a0</string>
+                    <key>compatible</key>
+                    <string>pci106b,117</string>
+                    <key>device-id</key>
+                    <data>oEMAAA==</data>
+                    <key>device_type</key>
+                    <string>Network controller</string>
+                    <key>model</key>
+                    <string>BCM4360 802.11ac Wireless Network Adapter</string>
+                    <key>name</key>
+                    <string>pci14e4,43a0</string>
+                    <key>pci-aspm-default</key>
+                    <integer>0</integer>
+                    <key>subsystem-id</key>
+                    <data>FwEAAA==</data>
+                    <key>subsystem-vendor-id</key>
+                    <data>axAAAA==</data>
+                    <key>vendor-id</key>
+                    <data>5BQAAA==</data>
+                </dict>
                 <key>PciRoot(0x0)/Pci(0x0,0x0)</key>
                 <dict>
                     <key>AAPL,slot-name</key>
@@ -726,6 +749,96 @@
                     <key>ExecutablePath</key>
                     <string>Contents/MacOS/itlwm</string>
                     <key>MaxKernel</key>
+                    <string></string>
+                    <key>MinKernel</key>
+                    <string>24.0.0</string>
+                    <key>PlistPath</key>
+                    <string>Contents/Info.plist</string>
+                </dict>
+                <dict>
+                    <key>Arch</key>
+                    <string>Any</string>
+                    <key>BundlePath</key>
+                    <string>IOSkywalkFamily.kext</string>
+                    <key>Comment</key>
+                    <string>V1.0</string>
+                    <key>Enabled</key>
+                    <false/>
+                    <key>ExecutablePath</key>
+                    <string>Contents/MacOS/IOSkywalkFamily</string>
+                    <key>MaxKernel</key>
+                    <string>24.99.99</string>
+                    <key>MinKernel</key>
+                    <string>24.0.0</string>
+                    <key>PlistPath</key>
+                    <string>Contents/Info.plist</string>
+                </dict>
+                <dict>
+                    <key>Arch</key>
+                    <string>Any</string>
+                    <key>BundlePath</key>
+                    <string>IO80211FamilyLegacy.kext</string>
+                    <key>Comment</key>
+                    <string>V1200.12.2b1</string>
+                    <key>Enabled</key>
+                    <false/>
+                    <key>ExecutablePath</key>
+                    <string>Contents/MacOS/IO80211FamilyLegacy</string>
+                    <key>MaxKernel</key>
+                    <string>24.99.99</string>
+                    <key>MinKernel</key>
+                    <string>24.0.0</string>
+                    <key>PlistPath</key>
+                    <string>Contents/Info.plist</string>
+                </dict>
+                <dict>
+                    <key>Arch</key>
+                    <string>Any</string>
+                    <key>BundlePath</key>
+                    <string>IO80211FamilyLegacy.kext/Contents/PlugIns/AirPortBrcmNIC.kext</string>
+                    <key>Comment</key>
+                    <string>V1400.1.1</string>
+                    <key>Enabled</key>
+                    <false/>
+                    <key>ExecutablePath</key>
+                    <string>Contents/MacOS/AirPortBrcmNIC</string>
+                    <key>MaxKernel</key>
+                    <string>24.99.99</string>
+                    <key>MinKernel</key>
+                    <string>24.0.0</string>
+                    <key>PlistPath</key>
+                    <string>Contents/Info.plist</string>
+                </dict>
+                <dict>
+                    <key>Arch</key>
+                    <string>Any</string>
+                    <key>BundlePath</key>
+                    <string>AMFIPass.kext</string>
+                    <key>Comment</key>
+                    <string>V1.4.1</string>
+                    <key>Enabled</key>
+                    <false/>
+                    <key>ExecutablePath</key>
+                    <string>Contents/MacOS/AMFIPass</string>
+                    <key>MaxKernel</key>
+                    <string>24.99.99</string>
+                    <key>MinKernel</key>
+                    <string>24.0.0</string>
+                    <key>PlistPath</key>
+                    <string>Contents/Info.plist</string>
+                </dict>
+                <dict>
+                    <key>Arch</key>
+                    <string>Any</string>
+                    <key>BundlePath</key>
+                    <string>AirportItlwm-Sequoia.kext</string>
+                    <key>Comment</key>
+                    <string>V2.3.0</string>
+                    <key>Enabled</key>
+                    <false/>
+                    <key>ExecutablePath</key>
+                    <string>Contents/MacOS/AirportItlwm</string>
+                    <key>MaxKernel</key>
                     <string>24.99.99</string>
                     <key>MinKernel</key>
                     <string>24.0.0</string>
@@ -1040,7 +1153,24 @@
                 </dict>
             </array>
             <key>Block</key>
-            <array/>
+            <array>
+                <dict>
+                    <key>Arch</key>
+                    <string>Any</string>
+                    <key>Comment</key>
+                    <string>Allow IOSkywalk Downgrade</string>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>Identifier</key>
+                    <string>com.apple.iokit.IOSkywalkFamily</string>
+                    <key>MaxKernel</key>
+                    <string>24.99.99</string>
+                    <key>MinKernel</key>
+                    <string>24.0.0</string>
+                    <key>Strategy</key>
+                    <string>Exclude</string>
+                </dict>
+            </array>
             <key>Emulate</key>
             <dict>
                 <key>Cpuid1Data</key>
@@ -1317,7 +1447,7 @@
                     <key>boot-args</key>
                     <string>debug=0x100 keepsyms=1 revpatch=sbvmm</string>
                     <key>csr-active-config</key>
-                    <data>AAAAAA==</data>
+                    <data>AwgAAA==</data>
                     <key>prev-lang:kbd</key>
                     <data></data>
                     <key>run-efi-updater</key>
