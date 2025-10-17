@@ -25,11 +25,6 @@ Apart from ACPI S3 Sleep which is broken, everything on the `Intel 13.5-Inch and
 
 The battery runtime is around five hours.
 
-> [!TIP]
-> I highly recommend installing `macOS 13 Ventura` rather than the newer `macOS 14 Sonoma` or `macOS 15 Sequoia`. The builtin Intel Wireless chip works almost perfectly with Apple's iServices and Continuity features on Ventura while those features are partially broken at the moment on newer versions of macOS.
-> 
-> In addition, later versions of macOS 14 Sonoma and especially macOS 15 Sequoia also seem to exhibit all kinds of issues and annoyances such as a garbled cursor, sketchy Bluetooth and issues when waking from hibernation.
-
 > [!IMPORTANT]
 > For macOS to be able to boot on the Surface Laptop 3, the `Secure Boot` option _**must be disabled**_ [in the UEFI](https://github.com/jlempen/Surface-Laptop-3-OpenCore/blob/main/README.md#uefi-settings). The boot screen will then display a large red bar with a padlock symbol at the top of the display when Secure Boot is disabled.
 
@@ -106,7 +101,6 @@ Windows and Linux should be detected automagically by the OpenCore boot loader e
 - [x] Power, volume up and volume down buttons
 - [x] Keyboard with working brightness, volume and mute keys, working caps lock light
 - [x] Trackpad with native multi-touch gestures
-- [x] Surface Pen
 - [x] Ambient light sensor
 - [x] Battery percentage and cycle count
 - [x] Hibernation (hibernatemode 25) - the device successfully wakes up from hibernation mode
@@ -119,15 +113,14 @@ Windows and Linux should be detected automagically by the OpenCore boot loader e
   <summary>What needs some more work</summary>
   
 ## What needs some more work
-- [ ] Sleep (hibernatemode 3) - the device only turns off the display without sleeping
 - [ ] The Touchscreen is disabled for now as it causes severe throttling and overheating issues
-- [ ] On macOS Sequoia, the user needs to close and open the lid again to wake up the display after hibernation
 </details>
 
 <details>
   <summary>What will probably never work</summary>
   
 ## What will probably never work
+- [ ] Sleep (hibernatemode 3) - the device only turns off the display without sleeping
 - [ ] IR camera (Windows Hello)
 </details>
 
