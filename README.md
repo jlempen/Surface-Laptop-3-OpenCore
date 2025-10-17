@@ -13,7 +13,7 @@ macOS on the Microsoft Surface Laptop 3 thanks to [Acidanthera's OpenCore bootlo
 ## Software Specifications
 | Software         | Version                            |
 | ---------------- | ---------------------------------- |
-| Target OS        | Apple macOS 13 Ventura, (14 Sonoma and 15 Sequoia) |
+| Target OS        | Apple macOS 13 Ventura, 14 Sonoma and 15 Sequoia |
 | OpenCore         | [MOD-OC v1.0.6](https://github.com/wjz304/OpenCore_NO_ACPI_Build/releases/download/1.0.6_9cb2b0d/OpenCore-Mod-1.0.6-RELEASE.zip) |
 | SMBIOS           | MacBookPro16,2 |
 | SSD format       | APFS file system, GPT partition table |
