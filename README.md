@@ -317,9 +317,11 @@ Open the `DeviceProperties` tab in your `config.plist` file.
 
 Disable the `PciRoot(0x0)/Pci(0x14,0x3)` item (your real Intel wireless card) by typing two hash signs at the beginning of the line: `##PciRoot(0x0)/Pci(0x14,0x3)`. Now enable the `#PciRoot(0x0)/Pci(0x14,0x3)` item (a spoofed Broadcom wireless card) by removing the hash sign at the beginning of the line: `PciRoot(0x0)/Pci(0x14,0x3)`.
 
-Save the `config.plist` file and restart your laptop.
+Save the `config.plist` file and restart your laptop. 
 
-Back in macOS, launch the OpenCore Legacy Patcher (OCLP) and run the `Post-Install Root Patch` for modern wireless but don't reboot when instructed to do so! 
+In the OpenCore boot picker, press the space bar to display the auxiliary tools. Select "Reset the NVRAM". This will restart the laptop, which will now hang on the black screen with Apple logo and red padlock, which is normal behaviour on Surface devices after an NVRAM reset. Force shutdown the laptop by pressing the power button for a few seconds, then restart and boot into macOS Sequoia.
+
+Back in Sequoia, launch the OpenCore Legacy Patcher (OCLP) and run the `Post-Install Root Patch` for modern wireless but don't reboot when instructed to do so! 
 
 Open the `DeviceProperties` tab in your `config.plist` file once more.
 
