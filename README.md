@@ -375,5 +375,5 @@ In addition to the above, to enable `itlwm.kext` under macOS Ventura and macOS S
 ## Related repositories
 * https://github.com/jc-bao/surface-laptop3-ventura
 * https://github.com/Xiashangning/BigSurface
-* https://github.com/Xiashangning/IPTSDaemon
+* https://github.com/randomappleboi/Native-Wifi-for-Hackintoshes-with-Intel-Wireless-cards-on-macOS-sequoia
 </details>
