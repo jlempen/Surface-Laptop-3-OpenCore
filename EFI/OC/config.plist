@@ -569,7 +569,7 @@
                     <key>ExecutablePath</key>
                     <string>Contents/MacOS/AppleALC</string>
                     <key>MaxKernel</key>
-                    <string></string>
+                    <string>24.99.99</string>
                     <key>MinKernel</key>
                     <string>8.0.0</string>
                     <key>PlistPath</key>
