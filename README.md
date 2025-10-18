@@ -328,12 +328,23 @@ Save the `config.plist` file and reboot once more. Your Intel wireless card shou
 </details>
 
 <details>
-  <summary>Fix broken Bluetooth on Wake from Hibernation</summary>
+  <summary>Fixing broken Bluetooth on Wake from Hibernation</summary>
   
-## Fix broken Bluetooth on Wake from Hibernation
+## Fixing broken Bluetooth on Wake from Hibernation
 After the device wakes up from Hibernation, Bluetooth may be broken / unable to connect.
 
 A very simple fix for this issue is to [download and install Bluesnooze](https://github.com/odlp/bluesnooze). Launch the app, enable `Launch at login` and you're done!
+</details>
+
+<details>
+  <summary>Fixing audio on macOS Tahoe</summary>
+  
+## Fixing audio on macOS Tahoe
+As Apple removed the `AppleHDA.kext` from macOS Tahoe, [Acidanthera's AppleALC.kext](https://github.com/acidanthera/AppleALC) wont't work on macOS Tahoe just yet. Digital audio through HDMI is not affected though. The easiest way to get back the internal speakers and microphone on macOS Tahoe is to install [SergeySlice's VoodooHDA audio driver](https://github.com/CloverHackyColor/VoodooHDA) with [chris1111's convenient VoodooHDA-Tahoe installer](https://github.com/chris1111/VoodooHDA-Tahoe).
+
+You can [grab the latest installer](https://github.com/jlempen/Surface-Laptop-3-OpenCore/blob/main/Tools/VoodooHDA-Tahoe.pkg) from the Tools folder in my repository. Simply launch the installer and follow the instructions.
+
+Once you're back in macOS Tahoe after a reboot, head over to `System Settings -> Sound -> Output & Input` and select the `Output` tab, then select `Speaker (Analog)` as your sound output device.
 </details>
 
 <details>
