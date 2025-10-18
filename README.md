@@ -4,6 +4,7 @@
 macOS on the Microsoft Surface Laptop 3 thanks to [Acidanthera's OpenCore bootloader](https://github.com/acidanthera/OpenCorePkg).
 
 ## Latest News
+* (20251018) With the fixes merged today, macOS Tahoe 26.0.1 now installs and runs quite nicely! Everything but FileVault and the internal audio seems to work as good as in macOS Sequoia now. Work in progress.
 * (20251016) Added resources and instructions to enable the `AirportItlwm.kext` on macOS Sonoma
 * (20251016) Added the `DisableBDPROCHOT.efi` driver to fix the throttling issues
 * (20251011) Fixed issues with the firmware downgrade by adding the `--force` argument to the `fwupdmgr` command line
@@ -13,7 +14,7 @@ macOS on the Microsoft Surface Laptop 3 thanks to [Acidanthera's OpenCore bootlo
 ## Software Specifications
 | Software         | Version                            |
 | ---------------- | ---------------------------------- |
-| Target OS        | Apple macOS 13 Ventura, 14 Sonoma and 15 Sequoia |
+| Target OS        | Apple macOS 13 Ventura, 14 Sonoma, 15 Sequoia and 26 Tahoe (work in progress) |
 | OpenCore         | [MOD-OC v1.0.6](https://github.com/wjz304/OpenCore_NO_ACPI_Build/releases/download/1.0.6_9cb2b0d/OpenCore-Mod-1.0.6-RELEASE.zip) |
 | SMBIOS           | MacBookPro16,2 |
 | SSD format       | APFS file system, GPT partition table |
@@ -54,7 +55,7 @@ Please be aware that all `PlatformInfo` and `SMBIOS` information was removed fro
 
 An UEFI firmware released by Micro$oft in August 2023 broke the Surface Laptop 3's trackpad in macOS in several ways. Downgrading the UEFI firmware to the last known working version `13.101.140.0` is required to fix the trackpad and hibernate mode 25 on macOS. See the detailed instructions below to easily downgrade the UEFI firmware. This needs to be done before installing any version of macOS or you won't have a working trackpad and/or keyboard during installation.
 
-`AirportItlwm-Ventura.kext`, `AirportItlwm-Sonoma140.kext` and `AirportItlwm-Sonoma144.kext` from the [OpenIntelWireless repo](https://github.com/OpenIntelWireless/itlwm) are drivers required to enable the Wifi chip. This EFI will dynamically load the appropriate kext for macOS Ventura or Sonoma depending on the running kernel. No need to manually replace the kext file when updating your version of macOS. In macOS Sequoia, you'll need to use the `Itlwm.kext` driver and its companion app [HeliPort](https://github.com/OpenIntelWireless/HeliPort/releases) to connect to a Wifi network. You'll find the latest stable `HeliPort.dmg` in the [Tools folder](https://github.com/jlempen/Surface-Laptop-3-OpenCore/blob/main/Tools/HeliPort.dmg) of this repo. This EFI will dynamically load the `Itlwm.kext` driver instead of `AirportItlwm.kext` when you boot into macOS Sequoia.
+`AirportItlwm-Ventura.kext`, `AirportItlwm-Sonoma140.kext` and `AirportItlwm-Sonoma144.kext` from the [OpenIntelWireless repo](https://github.com/OpenIntelWireless/itlwm) are drivers required to enable the Wifi chip. This EFI will dynamically load the appropriate kext for macOS Ventura or Sonoma depending on the running kernel. No need to manually replace the kext file when updating your version of macOS. In macOS Sequoia and macOS Tahoe, you'll need to use the `Itlwm.kext` driver and its companion app [HeliPort](https://github.com/OpenIntelWireless/HeliPort/releases) to connect to a Wifi network. You'll find the latest stable `HeliPort.dmg` in the [Tools folder](https://github.com/jlempen/Surface-Laptop-3-OpenCore/blob/main/Tools/HeliPort.dmg) of this repo. This EFI will dynamically load the `Itlwm.kext` driver instead of `AirportItlwm.kext` when you boot into macOS Sequoia or macOS Tahoe.
 
 There is now a hack to enable the `AirportItlwm.kext` wireless driver on macOS Sequoia, but this method requires root patching. All the resources neccessary are already included in this EFI. If you wish to replace the `Itlwm.kext` driver with the `AirportItlwm.kext` driver on macOS Sequoia, [head over to the instructions](https://github.com/jlempen/Surface-Laptop-3-OpenCore/tree/main?tab=readme-ov-file#enabling-the-airportitlwmkext-driver-for-the-intel-wireless-card-in-macos-sequoia).
 
