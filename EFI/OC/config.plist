@@ -605,7 +605,7 @@
                     <key>ExecutablePath</key>
                     <string>Contents/MacOS/IntelBTPatcher</string>
                     <key>MaxKernel</key>
-                    <string>24.99.99</string>
+                    <string></string>
                     <key>MinKernel</key>
                     <string>24.0.0</string>
                     <key>PlistPath</key>
@@ -641,7 +641,7 @@
                     <key>ExecutablePath</key>
                     <string>Contents/MacOS/IntelBluetoothFirmware</string>
                     <key>MaxKernel</key>
-                    <string>24.99.99</string>
+                    <string></string>
                     <key>MinKernel</key>
                     <string>24.0.0</string>
                     <key>PlistPath</key>
@@ -1445,7 +1445,7 @@
                     <key>bluetoothInternalControllerInfo</key>
                     <data>AAAAAAAAAAAAAAAAAAA=</data>
                     <key>boot-args</key>
-                    <string>debug=0x100 keepsyms=1 revpatch=sbvmm</string>
+                    <string>debug=0x100 keepsyms=1 revpatch=sbvmm -ibtcompatbeta</string>
                     <key>csr-active-config</key>
                     <data>AwgAAA==</data>
                     <key>prev-lang:kbd</key>
