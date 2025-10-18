@@ -4,7 +4,8 @@
 macOS on the Microsoft Surface Laptop 3 thanks to [Acidanthera's OpenCore bootloader](https://github.com/acidanthera/OpenCorePkg).
 
 ## Latest News
-* (20251018) With the fixes merged today, macOS Tahoe 26.0.1 now installs (albeit with some flickering in the installer) and runs quite nicely! Everything but FileVault and the internal audio seems to work as good as in macOS Sequoia now. Work in progress.
+* (20251018) Audio is working again in macOS Tahoe thanks to a convenient installer for VoodooHDA ([see section below](https://github.com/jlempen/Surface-Laptop-3-OpenCore/tree/main#fixing-audio-on-macos-tahoe)).
+* (20251018) With the stuff merged today, macOS Tahoe 26.0.1 now installs (albeit with some flickering in the installer) and runs quite nicely! Everything but FileVault and the internal speakers and microphone seems to work just fine. Work in progress.
 * (20251016) Added resources and instructions to enable the `AirportItlwm.kext` on macOS Sonoma
 * (20251016) Added the `DisableBDPROCHOT.efi` driver to fix the throttling issues
 * (20251011) Fixed issues with the firmware downgrade by adding the `--force` argument to the `fwupdmgr` command line
