@@ -4,7 +4,8 @@
 macOS on the Microsoft Surface Laptop 3 thanks to [Acidanthera's OpenCore bootloader](https://github.com/acidanthera/OpenCorePkg).
 
 ## Latest News
-* (20251018) Audio is working again in macOS Tahoe thanks to a convenient installer for VoodooHDA ([see section below](https://github.com/jlempen/Surface-Laptop-3-OpenCore/tree/main#fixing-audio-on-macos-tahoe)).
+* (20260110) Added resources and instructions to enable `AirportItlwm.kext` and fix audio on macOS Tahoe ([see section below](https://github.com/jlempen/Surface-Laptop-3-OpenCore/tree/main?tab=readme-ov-file#enabling-the-intel-wireless-card-in-macos-sequoia-and-tahoe)).
+* (20260110) Fixing audio in macOS Tahoe ([see section below](https://github.com/jlempen/Surface-Laptop-3-OpenCore/tree/main#fixing-audio-on-macos-tahoe)).
 * (20251018) With the stuff merged today, macOS Tahoe 26.0.1 now installs (albeit with some flickering in the installer) and runs quite nicely! Everything but FileVault and the internal speakers and microphone seems to work just fine. Work in progress.
 * (20251016) Added resources and instructions to enable the `AirportItlwm.kext` on macOS Sonoma
 * (20251016) Added the `DisableBDPROCHOT.efi` driver to fix the throttling issues
@@ -16,7 +17,7 @@ macOS on the Microsoft Surface Laptop 3 thanks to [Acidanthera's OpenCore bootlo
 | Software         | Version                            |
 | ---------------- | ---------------------------------- |
 | Target OS        | Apple macOS 13 Ventura, 14 Sonoma, 15 Sequoia and 26 Tahoe (work in progress) |
-| OpenCore         | [MOD-OC v1.0.6](https://github.com/wjz304/OpenCore_NO_ACPI_Build/releases/download/1.0.6_9cb2b0d/OpenCore-Mod-1.0.6-RELEASE.zip) |
+| OpenCore         | [MOD-OC v1.0.7](https://github.com/wjz304/OpenCore_NO_ACPI_Build/releases/download/1.0.7_ffbd7f5/OpenCore-Mod-1.0.7-RELEASE.zip) |
 | SMBIOS           | MacBookPro16,2 |
 | SSD format       | APFS file system, GPT partition table |
 
@@ -56,9 +57,11 @@ Please be aware that all `PlatformInfo` and `SMBIOS` information was removed fro
 
 An UEFI firmware released by Micro$oft in August 2023 broke the Surface Laptop 3's trackpad in macOS in several ways. Downgrading the UEFI firmware to the last known working version `13.101.140.0` is required to fix the trackpad and hibernate mode 25 on macOS. See the detailed instructions below to easily downgrade the UEFI firmware. This needs to be done before installing any version of macOS or you won't have a working trackpad and/or keyboard during installation.
 
-`AirportItlwm-Ventura.kext`, `AirportItlwm-Sonoma140.kext` and `AirportItlwm-Sonoma144.kext` from the [OpenIntelWireless repo](https://github.com/OpenIntelWireless/itlwm) are drivers required to enable the Wifi chip. This EFI will dynamically load the appropriate kext for macOS Ventura or Sonoma depending on the running kernel. No need to manually replace the kext file when updating your version of macOS. In macOS Sequoia and macOS Tahoe, you'll need to use the `Itlwm.kext` driver and its companion app [HeliPort](https://github.com/OpenIntelWireless/HeliPort/releases) to connect to a Wifi network. You'll find the latest stable `HeliPort.dmg` in the [Tools folder](https://github.com/jlempen/Surface-Laptop-3-OpenCore/blob/main/Tools/HeliPort.dmg) of this repo. This EFI will dynamically load the `Itlwm.kext` driver instead of `AirportItlwm.kext` when you boot into macOS Sequoia or macOS Tahoe.
+`AirportItlwm-Ventura.kext`, `AirportItlwm-Sonoma140.kext`, `AirportItlwm-Sonoma144.kext` and `AirportItlwm-Sequoia-Tahoe.kext` from the [OpenIntelWireless repo](https://github.com/OpenIntelWireless/itlwm) are drivers required to enable the Wifi chip. This EFI will dynamically load the appropriate kext for macOS Ventura, Sonoma, Sequoia or Tahoe depending on the running kernel. No need to manually replace the kext file when updating your version of macOS. 
 
-There is now a hack to enable the `AirportItlwm.kext` wireless driver on macOS Sequoia, but this method requires root patching. All the resources neccessary are already included in this EFI. If you wish to replace the `Itlwm.kext` driver with the `AirportItlwm.kext` driver on macOS Sequoia, [head over to the instructions](https://github.com/jlempen/Surface-Laptop-3-OpenCore/tree/main?tab=readme-ov-file#enabling-the-airportitlwmkext-driver-for-the-intel-wireless-card-in-macos-sequoia).
+In macOS Sequoia and Tahoe, you'll need to apply root patches with [Laobamac's OCLP-Mod Patcher](https://github.com/laobamac/OCLP-Mod/releases) once the OS is up and running in order to enable the Intel Wifi chip. [Head over to the instructions.](https://github.com/jlempen/Surface-Laptop-3-OpenCore/tree/main?tab=readme-ov-file#enabling-the-intel-wireless-card-in-macos-sequoia-and-tahoe).
+
+the `Itlwm.kext` driver and its companion app [HeliPort](https://github.com/OpenIntelWireless/HeliPort/releases) are included but disabled in this EFI for those who prefer to connect to their Wifi network this way. You'll find the latest stable `HeliPort.dmg` in the [Tools folder](https://github.com/jlempen/Surface-Laptop-3-OpenCore/blob/main/Tools/HeliPort.dmg) of this repo.
 
 This repository uses the unofficial OpenCore_NO_ACPI_Build fork of OpenCore by [btwise](https://gitee.com/btwise/OpenCore_NO_ACPI), wich is not endorsed by Acidanthera (the dev team behind OpenCore). The main (and only) difference between this fork and the official OpenCore version is that it allows to prevent ACPI injection (e.g. patches, tables, boot parameters) into other OSes besides macOS.
 
@@ -281,69 +284,37 @@ Keep in mind that once the Surface Laptop 3 hibernates, you need to let it hiber
 </details>
 
 <details>
-  <summary>Enabling the AirportItlwm.kext driver for the Intel Wireless Card in macOS Sequoia</summary>
+  <summary>Enabling the Intel Wireless Card in macOS Sequoia and Tahoe</summary>
   
-## Enabling the AirportItlwm.kext driver for the Intel Wireless Card in macOS Sequoia
+## Enabling the Intel Wireless Card in macOS Sequoia and Tahoe
+Download and install the latest release of [Laobamac's OCLP-Mod Patcher](https://github.com/laobamac/OCLP-Mod/releases).
 
-## Step One
-Download and install the latest version of the [OpenCore Legacy Patcher (OCLP)](https://github.com/dortania/OpenCore-Legacy-Patcher/releases).
+Launch the OCLP-Mod Patcher, this may take a few seconds. As of January 2026, the tool is only available in Chinese.
 
-Now open the `Kernel -> Add` tab in your `config.plist` file.
-
-Disable the following kext:
-```
-itlwm.kext
-```
-
-Then enable the following kexts:
-
-```
-IOSkywalkFamily.kext
-IO80211FamilyLegacy.kext
-IO80211FamilyLegacy.kext/Contents/PlugIns/AirPortBrcmNIC.kext
-AMFIPass.kext
-AirportItlwm-Sequoia.kext
-```
-
-Now head over to the `Kernel -> Block` tab and enable the `com.apple.iokit.IOSkywalkFamily` item.
-
-## Step Two
-Open the `DeviceProperties` tab in your `config.plist` file. 
-
-Disable the `PciRoot(0x0)/Pci(0x14,0x3)` item (your real Intel wireless card) by typing two hash signs at the beginning of the line: `##PciRoot(0x0)/Pci(0x14,0x3)`. Now enable the `#PciRoot(0x0)/Pci(0x14,0x3)` item (a spoofed Broadcom wireless card) by removing the hash sign at the beginning of the line: `PciRoot(0x0)/Pci(0x14,0x3)`.
-
-Save the `config.plist` file and restart your laptop. 
-
-In the OpenCore boot picker, press the space bar to display the auxiliary tools. Select "Reset the NVRAM". This will restart the laptop, which will now hang on the black screen with Apple logo and red padlock, which is normal behaviour on Surface devices after an NVRAM reset. Force shutdown the laptop by pressing the power button for a few seconds, then restart and boot into macOS Sequoia.
-
-Back in Sequoia, launch the OpenCore Legacy Patcher (OCLP) and run the `Post-Install Root Patch` for modern wireless but don't reboot when instructed to do so! 
-
-Open the `DeviceProperties` tab in your `config.plist` file once more.
-
-Now revert the changes you made earlier by disabling the `PciRoot(0x0)/Pci(0x14,0x3)` item (which is now the spoofed Broadcom wireless card) by typing a hash sign at the beginning of the line: `#PciRoot(0x0)/Pci(0x14,0x3)`. Then enable the `##PciRoot(0x0)/Pci(0x14,0x3)` item (which is your real Intel wireless card) by removing the two hash signs at the beginning of the line: `PciRoot(0x0)/Pci(0x14,0x3)`.
-
-Save the `config.plist` file and reboot once more. Your Intel wireless card should work now!
+Now click on the upper right button to select the Root Patching option:
+<img width="712" height="443" alt="Screenshot 2026-01-10 at 00 43 16" src="https://github.com/user-attachments/assets/3af5464a-836b-4f71-a0fc-8ac8bd4af304" />
+Then click on the green button or press Enter to start the patching process:
+<img width="712" height="443" alt="Screenshot 2026-01-10 at 00 46 51" src="https://github.com/user-attachments/assets/843687df-655f-47ea-bfc8-5b3f06681756" />
+Once the patching is done, click on the green button or press Enter to close the tool and restart your computer. Your Intel wireless card should be working now.
 
 > [!IMPORTANT]
-> You'll need to repeat Step Two after every macOS update!
-</details>
-
-<details>
-  <summary>Fixing broken Bluetooth on Wake from Hibernation</summary>
-  
-## Fixing broken Bluetooth on Wake from Hibernation
-After the device wakes up from Hibernation, Bluetooth may be broken / unable to connect.
-
-A very simple fix for this issue is to [download and install Bluesnooze](https://github.com/odlp/bluesnooze). Launch the app, enable `Launch at login` and you're done!
+> You'll need to repeat those steps after every macOS update!
 </details>
 
 <details>
   <summary>Fixing audio on macOS Tahoe</summary>
   
 ## Fixing audio on macOS Tahoe
-As Apple removed the `AppleHDA.kext` from macOS Tahoe, [Acidanthera's AppleALC.kext](https://github.com/acidanthera/AppleALC) wont't work on macOS Tahoe just yet. Digital audio through HDMI is not affected though. The easiest way to get back the internal speakers and microphone on macOS Tahoe is to install [SergeySlice's VoodooHDA audio driver](https://github.com/CloverHackyColor/VoodooHDA) with [chris1111's convenient VoodooHDA-Tahoe installer](https://github.com/chris1111/VoodooHDA-Tahoe).
 
-You can [grab the latest installer](https://github.com/jlempen/Surface-Laptop-3-OpenCore/blob/main/Tools/VoodooHDA-Tahoe.pkg) from the Tools folder in my repository. Simply launch the installer and follow the instructions.
+## By root patching
+As Apple removed the `AppleHDA.kext` from macOS Tahoe, [Acidanthera's AppleALC.kext](https://github.com/acidanthera/AppleALC) won't work on macOS Tahoe out of the box and audio is broken. To fix this, simply run [Laobamac's OCLP-Mod Patcher](https://github.com/laobamac/OCLP-Mod/releases) a second time once you have [fixed the Intel wireless card](https://github.com/jlempen/Surface-Laptop-3-OpenCore/tree/main?tab=readme-ov-file#enabling-the-intel-wireless-card-in-macos-sequoia-and-tahoe) and Internet is working again. The reason for this is that the OCLP-Mod Patcher needs to download the Kernel Development Kit from Apple's servers in order to reinstall the `AppleHDA.kext` on your macOS Tahoe partition and to do so, it needs a working Internet connection. 
+
+## By installing the VoodooHDA audio driver
+Another way to get back the internal speakers and microphone on macOS Tahoe is to install [SergeySlice's VoodooHDA audio driver](https://github.com/CloverHackyColor/VoodooHDA) with [chris1111's convenient VoodooHDA-Tahoe installer](https://github.com/chris1111/VoodooHDA-Tahoe). This has the added benefit of fixing the loud click you hear from your speakers when playing sound for the first time after waking your SL3 from hibernation.
+
+Before installing the VoodooHDA driver, you need to disable the `AppleALC.kext` driver in your `config.plist` file under `Kernel -> Add` and reboot your computer.
+
+Then [grab the latest installer](https://github.com/jlempen/Surface-Laptop-3-OpenCore/blob/main/Tools/VoodooHDA-Tahoe.pkg) from the Tools folder in my repository, launch the installer and follow the instructions.
 
 Once you're back in macOS Tahoe after a reboot, head over to `System Settings -> Sound -> Output & Input` and select the `Output` tab, then select `Speaker (Analog)` as your sound output device.
 </details>
@@ -368,13 +339,21 @@ You may also download and install [BetterDisplay](https://github.com/waydabber/B
 </details>
 
 <details>
-  <summary>Fixing broken Apple Messages and FaceTime</summary>
+  <summary>Fixing broken Bluetooth on Wake from Hibernation</summary>
   
-## Fixing broken Apple Messages and FaceTime
-To fix issues with Apple Messages and FaceTime related to the [Intel Wireless driver](https://github.com/OpenIntelWireless/itlwm) on macOS Sonoma, disable all `AirportItlwm-***.kext` entries under `Kernel -> Add` in your `config.plist` file and use the [itlwm_v2.3.0_stable.kext.zip](https://github.com/OpenIntelWireless/itlwm/releases/download/v2.3.0/itlwm_v2.3.0_stable.kext.zip) and its companion app [HeliPort](https://github.com/OpenIntelWireless/HeliPort/releases/download/v1.5.0/HeliPort.dmg) instead.
-The latest version 2.3.0 of itlwm.kext is already included in the Kext folder and `config.plist` file.
+## Fixing broken Bluetooth on Wake from Hibernation
+After the device wakes up from Hibernation, Bluetooth may be broken / unable to connect.
 
-In addition to the above, to enable `itlwm.kext` under macOS Ventura and macOS Sonoma, you need to delete any text (i.e. `24.0.0` and `24.99.99` respectively) in the `MinKernel` and `MaxKernel` fields under `Kernel -> Add -> itlwm.kext` in your `config.plist` file.
+A very simple fix for this issue is to [download and install Bluesnooze](https://github.com/odlp/bluesnooze). Launch the app, enable `Launch at login` and you're done!
+</details>
+
+<details>
+  <summary>Fixing broken Apple Messages and FaceTime on macOS Sonoma</summary>
+  
+## Fixing broken Apple Messages and FaceTime on macOS Sonoma
+To fix issues with Apple Messages and FaceTime related to the [Intel Wireless driver](https://github.com/OpenIntelWireless/itlwm) on macOS Sonoma, disable all `AirportItlwm-***.kext` entries under `Kernel -> Add` in your `config.plist` file and use the [itlwm_v2.3.0_stable.kext.zip](https://github.com/OpenIntelWireless/itlwm/releases/download/v2.3.0/itlwm_v2.3.0_stable.kext.zip) and its companion app [HeliPort](https://github.com/OpenIntelWireless/HeliPort/releases/download/v1.5.0/HeliPort.dmg) instead.
+
+The latest version 2.3.0 of itlwm.kext is already included in the Kext folder and `config.plist` file.
 </details>
 
 <details>
