@@ -1705,6 +1705,18 @@
                     <key>Path</key>
                     <string>DisablePROCHOT.efi</string>
                 </dict>
+                <dict>
+                    <key>Arguments</key>
+                    <string></string>
+                    <key>Comment</key>
+                    <string></string>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>LoadEarly</key>
+                    <true/>
+                    <key>Path</key>
+                    <string>apfs_aligned.efi</string>
+                </dict>
             </array>
             <key>Input</key>
             <dict>
