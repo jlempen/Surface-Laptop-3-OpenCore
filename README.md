@@ -6,7 +6,7 @@ macOS on the Microsoft Surface Laptop 3 thanks to [Acidanthera's OpenCore bootlo
 ## Latest News
 * (20260110) Added resources and instructions to enable `AirportItlwm.kext` and fix audio on macOS Tahoe ([see section below](https://github.com/jlempen/Surface-Laptop-3-OpenCore/tree/main?tab=readme-ov-file#enabling-the-intel-wireless-card-in-macos-sequoia-and-tahoe)).
 * (20260110) Fixing audio in macOS Tahoe ([see section below](https://github.com/jlempen/Surface-Laptop-3-OpenCore/tree/main#fixing-audio-on-macos-tahoe)).
-* (20251018) With the stuff merged today, macOS Tahoe 26.0.1 now installs (albeit with some flickering in the installer) and runs quite nicely! Everything but FileVault and the internal speakers and microphone seems to work just fine. Work in progress.
+* (20251018) With the stuff merged today, macOS Tahoe 26.0.1 now installs (albeit with some flickering in the installer) and runs quite nicely, but expect ~~internal audio and~~ FileVault to be broken. **_Don't enable FileVault when prompted at the end of the install process._** Work in progress.
 * (20251016) Added resources and instructions to enable the `AirportItlwm.kext` on macOS Sonoma
 * (20251016) Added the `DisableBDPROCHOT.efi` driver to fix the throttling issues
 * (20251011) Fixed issues with the firmware downgrade by adding the `--force` argument to the `fwupdmgr` command line
