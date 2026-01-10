@@ -293,9 +293,9 @@ Launch the OCLP-Mod Patcher, this may take a few seconds. As of January 2026, th
 
 Now click on the upper right button to select the Root Patching option:
 <img width="712" height="443" alt="Screenshot 2026-01-10 at 00 43 16" src="https://github.com/user-attachments/assets/3af5464a-836b-4f71-a0fc-8ac8bd4af304" />
-Then click on the green button or press Enter to start the patching process:
+Then click on the highlighted button or press Enter to start the patching process:
 <img width="712" height="443" alt="Screenshot 2026-01-10 at 00 46 51" src="https://github.com/user-attachments/assets/843687df-655f-47ea-bfc8-5b3f06681756" />
-Once the patching is done, click on the green button or press Enter to close the tool and restart your computer. Your Intel wireless card should be working now.
+Once the patching is done, click on the highlighted button or press Enter to close the tool and restart your computer. Your Intel wireless card should be working now.
 
 > [!IMPORTANT]
 > You'll need to repeat those steps after every macOS update!
@@ -323,7 +323,7 @@ Once you're back in macOS Tahoe after a reboot, head over to `System Settings ->
   <summary>Enabling native HiDPI display settings in macOS</summary>
   
 ## Enabling native HiDPI display settings in macOS
-On the installed macOS system, the default display resolution is less than ideal. To enable native HiDPI settings in the Display Preferences of macOS, download and run the [one-key-hidpi](https://github.com/jlempen/one-key-hidpi) script and select the option `(7) Manual input resolution`, then copy and paste the resolutions below into the terminal, press Enter and reboot for the changes to take effect. This will give you five sane preset resolutions for your Surface Laptop 3.
+On the installed macOS system, the default display resolution is less than ideal. To enable native HiDPI settings in the Display Preferences of macOS, download and run [xzhih's one-key-hidpi script](https://github.com/xzhih/one-key-hidpi) and select the option `(7) Manual input resolution`, then copy and paste the resolutions below into the terminal, press Enter and reboot for the changes to take effect. This will give you five sane preset resolutions for your Surface Laptop 3.
 
 For the 13.5-Inch Surface Laptop 3:
 ```
@@ -353,7 +353,7 @@ A very simple fix for this issue is to [download and install Bluesnooze](https:/
 ## Fixing broken Apple Messages and FaceTime on macOS Sonoma
 To fix issues with Apple Messages and FaceTime related to the [Intel Wireless driver](https://github.com/OpenIntelWireless/itlwm) on macOS Sonoma, disable all `AirportItlwm-***.kext` entries under `Kernel -> Add` in your `config.plist` file and use the [itlwm_v2.3.0_stable.kext.zip](https://github.com/OpenIntelWireless/itlwm/releases/download/v2.3.0/itlwm_v2.3.0_stable.kext.zip) and its companion app [HeliPort](https://github.com/OpenIntelWireless/HeliPort/releases/download/v1.5.0/HeliPort.dmg) instead.
 
-The latest version 2.3.0 of itlwm.kext is already included in the Kext folder and `config.plist` file.
+The latest version 2.3.0 of `itlwm.kext` is already included in the Kext folder and `config.plist` file.
 </details>
 
 <details>
