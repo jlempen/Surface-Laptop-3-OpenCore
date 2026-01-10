@@ -287,18 +287,56 @@ Keep in mind that once the Surface Laptop 3 hibernates, you need to let it hiber
   <summary>Enabling the Intel Wireless Card in macOS Sequoia and Tahoe</summary>
   
 ## Enabling the Intel Wireless Card in macOS Sequoia and Tahoe
-Download and install the latest release of [Laobamac's OCLP-Mod Patcher](https://github.com/laobamac/OCLP-Mod/releases).
+
+## With the AirportItlwm.kext driver and root patching
+It is now possible to have Intel WiFi with native Airport features on macOS Sequoia and Tahoe by enabling the `AirportItlwm.kext` driver for macOS Ventura provided by [the OpenIntelWireless project](https://openintelwireless.github.io/). 
+
+`AirportItlwm.kext` uses Apple's IO80211Family. It provides certain Airport features but lacks stability compared with `itlwm.kext` due to the ambiguity of reverse engineering.
+
+To enable the `AirportItlwm.kext` driver, download and install the latest release of [Laobamac's OCLP-Mod Patcher](https://github.com/laobamac/OCLP-Mod/releases).
 
 Launch the OCLP-Mod Patcher, this may take a few seconds. As of January 2026, the tool is only available in Chinese.
 
 Now click on the upper right button to select the Root Patching option:
 <img width="712" height="443" alt="Screenshot 2026-01-10 at 00 43 16" src="https://github.com/user-attachments/assets/3af5464a-836b-4f71-a0fc-8ac8bd4af304" />
+
 Then click on the highlighted button or press Enter to start the patching process:
 <img width="712" height="443" alt="Screenshot 2026-01-10 at 00 46 51" src="https://github.com/user-attachments/assets/843687df-655f-47ea-bfc8-5b3f06681756" />
+
 Once the patching is done, click on the highlighted button or press Enter to close the tool and restart your computer. Your Intel wireless card should be working now.
 
 > [!IMPORTANT]
-> You'll need to repeat those steps after every macOS update!
+> You'll need to repeat the above steps after every macOS update!
+
+## With the Itlwm.kext driver
+`itlwm.kext` uses Apple's IOEthernet rather than IO80211. It is purely based on open-source resources, provides a stabler and faster performance, and the ability to unload on Kernels that use prelined kernel.
+
+To enable Intel WiFi with the `itlwm.kext` driver, open the `Kernel -> Add` tab in your `config.plist` file.
+
+Enable the following kext:
+```
+itlwm.kext
+```
+
+Then disable the following kexts:
+
+```
+IOSkywalkFamily.kext
+IO80211FamilyLegacy.kext
+IO80211FamilyLegacy.kext/Contents/PlugIns/AirPortBrcmNIC.kext
+AMFIPass.kext
+AirportItlwm-Sequoia-Tahoe.kext
+```
+
+Now head over to the `Kernel -> Block` tab and disable the `com.apple.iokit.IOSkywalkFamily` item.
+
+Then head over to the `NVRAM` tab, select the `7C436110-AB2A-4BBB-A880-FE41995C9F82` UUID and remove the `-amfipassbeta` argument from the `boot-args` key.
+
+Save and close the `config.plist` file and reboot your computer.
+
+Download and install the latest `HeliPort` Intel WiFi client for `itlwm` from [the OpenIntelWireless project](https://openintelwireless.github.io/HeliPort/#download).
+
+Add the `HeliPort` client to your login items and hide the macOS WiFi icon from the Menu Bar.
 </details>
 
 <details>
