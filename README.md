@@ -4,9 +4,10 @@
 macOS on the Microsoft Surface Laptop 3 thanks to [Acidanthera's OpenCore bootloader](https://github.com/acidanthera/OpenCorePkg).
 
 ## Latest News
+* (20260111) Added the `apfs_aligned.efi` driver to fix `FileVault` when upgrading to macOS Tahoe ([see section below](https://github.com/jlempen/Surface-Laptop-3-OpenCore/tree/main#fixing-filevault-on-macos-tahoe)).
 * (20260110) Added resources and instructions to enable `AirportItlwm.kext` and fix audio on macOS Tahoe ([see section below](https://github.com/jlempen/Surface-Laptop-3-OpenCore/tree/main?tab=readme-ov-file#enabling-the-intel-wireless-card-in-macos-sequoia-and-tahoe)).
 * (20260110) Fixing audio in macOS Tahoe ([see section below](https://github.com/jlempen/Surface-Laptop-3-OpenCore/tree/main#fixing-audio-on-macos-tahoe)).
-* (20251018) With the stuff merged today, macOS Tahoe 26.0.1 now installs (albeit with some flickering in the installer) and runs quite nicely, but expect ~~internal audio and~~ FileVault to be broken. **_Don't enable FileVault when prompted at the end of the install process._** Work in progress.
+* (20251018) With the stuff merged today, macOS Tahoe 26.0.1 now installs (albeit with some flickering in the installer) and runs quite nicely.
 * (20251016) Added resources and instructions to enable the `AirportItlwm.kext` on macOS Sonoma
 * (20251016) Added the `DisableBDPROCHOT.efi` driver to fix the throttling issues
 * (20251011) Fixed issues with the firmware downgrade by adding the `--force` argument to the `fwupdmgr` command line
@@ -383,6 +384,19 @@ You may also download and install [BetterDisplay](https://github.com/waydabber/B
 After the device wakes up from Hibernation, Bluetooth may be broken / unable to connect.
 
 A very simple fix for this issue is to [download and install Bluesnooze](https://github.com/odlp/bluesnooze). Launch the app, enable `Launch at login` and you're done!
+</details>
+
+<details>
+  <summary>Fixing FileVault when upgrading to macOS Tahoe</summary>
+  
+## Fixing FileVault when upgrading to macOS Tahoe
+If you enabled FileVault in your macOS installation and upgrade to macOS Tahoe, the installer will prompt you to enter your FileVault password but it will not accept your password even if it is correct. This is because Tahoe's APFS driver doesn't support the software FileVault created on previous versions of macOS.
+
+To fix this, open the `UEFI -> Drivers` tab in your `config.plist` file and enable the `apfs_aligned.efi` driver.
+
+Then head over to the `UEFI -> APFS` tab and disable the `EnableJumpstart` option.
+
+Save and close the `config.plist` file and restart your computer. The Installer should now accept your APFS password.
 </details>
 
 <details>
