@@ -15,7 +15,7 @@ macOS on the Microsoft Surface Laptop 3 thanks to [Acidanthera's OpenCore bootlo
 > If you wish to enable `FileVault` disk encryption in macOS Tahoe, [carefully read the section below](https://github.com/jlempen/Surface-Laptop-3-OpenCore/tree/main#fixing-filevault-when-upgrading-to-macos-tahoe).
 
 ## Latest News
-* (20260127) Added instructions to enable Wifi in the macOS Sequoia and Tahoe installer ([see section below](https://github.com/jlempen/Surface-Laptop-3-OpenCore#enabling-the-intel-wireless-card-in-the-macos-sequoia-and-tahoe-installer)).
+* (20260127) Added instructions to enable Wifi in the macOS Sequoia and Tahoe installer ([see section below](https://github.com/jlempen/Surface-Laptop-3-OpenCore/tree/main#enabling-the-intel-wireless-card-in-the-macos-sequoia-and-tahoe-installer)).
 * (20260111) Added the `apfs_aligned.efi` driver to fix `FileVault` when upgrading to macOS Tahoe ([see section below](https://github.com/jlempen/Surface-Laptop-3-OpenCore/tree/main#fixing-filevault-when-upgrading-to-macos-tahoe)).
 * (20260110) Added resources and instructions to enable `AirportItlwm.kext` and fix audio on macOS Tahoe ([see section below](https://github.com/jlempen/Surface-Laptop-3-OpenCore/tree/main?tab=readme-ov-file#enabling-the-intel-wireless-card-in-macos-sequoia-and-tahoe)).
 * (20260110) Fixing audio in macOS Tahoe ([see section below](https://github.com/jlempen/Surface-Laptop-3-OpenCore/tree/main#fixing-audio-on-macos-tahoe)).
@@ -384,7 +384,7 @@ Then open the `info.plist` file inside the `itlwm.kext` and add the name and pas
 
 <img width="930" height="771" alt="Image" src="https://github.com/user-attachments/assets/094a62e7-bb90-4d8b-a92e-57f7c4a4f682" />
 
-Once macOS Sequoia or Tahoe is up and running, you may switch back to the `AirportItlwm.kext` driver by reverting the changes you made above, then [follow my instructions](https://github.com/jlempen/Surface-Laptop-3-OpenCore#enabling-the-intel-wireless-card-in-macos-sequoia-and-tahoe) to apply the root patches which enable the Intel Wifi chip.
+Once macOS Sequoia or Tahoe is up and running, you may switch back to the `AirportItlwm.kext` driver by reverting the changes you made above, then [follow my instructions](https://github.com/jlempen/Surface-Laptop-3-OpenCore/tree/main#enabling-the-intel-wireless-card-in-macos-sequoia-and-tahoe) to apply the root patches which enable the Intel Wifi chip.
 </details>
 
 <details>
