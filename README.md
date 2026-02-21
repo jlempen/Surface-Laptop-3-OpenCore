@@ -45,6 +45,9 @@ The battery runtime is around five hours.
 > For macOS to be able to boot on the Surface Laptop 3, the `Secure Boot` option _**must be disabled**_ [in the UEFI](https://github.com/jlempen/Surface-Laptop-3-OpenCore/blob/main/README.md#uefi-settings). The boot screen will then display a large red bar with a padlock symbol at the top of the display when Secure Boot is disabled.
 
 > [!IMPORTANT]
+> Samsung PM981 and PM991 SSDs are known to cause various kernel panics, as well as boot and hibernation issues. If you run into such problems, consider replacing the Samsung drive with an SSD from Kioxia or Western Digital. I've had no issues with the Kioxia BG3 and the Western Digital Black SN770M drives.
+
+> [!IMPORTANT]
 > If your Surface Laptop 3 randomly shuts down due to overheating during the macOS installation process, disable the `DisableBDPROCHOT.efi` driver in the `UEFI -> Drivers` section of your `config.plist` file.
 > Once macOS is up and running, you can enable the driver again.
 
