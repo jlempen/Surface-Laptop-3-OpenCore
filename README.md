@@ -212,7 +212,7 @@ Since Windows 7 (and Server 2008), Microsoft has added a way for system administ
 
 First, you'll have to install Windows with the Surface recovery (as the Windows installer DOES NOT include the drivers to communicate with the Surface Aggregator Module which handles HID devices, oddly enough)
 
-Once you have Windows up and running, you'll want to install the last known working version of the drivers. Download [SurfaceLaptop3_Win10_19041_22.011.9779.0.msi](https://drive.google.com/file/d/1UfafCWYVMuY5J_2tNFkMs9-fSAdw-RYQ/view?usp=sharing) from this Google Drive mirror. If you haven't downgraded your firmware, this will do that for you too.
+Once you have Windows up and running, you'll want to install the last known working version of the drivers. Download [SurfaceLaptop3_Win10_19041_22.011.9779.0.msi](https://github.com/jlempen/Surface-Laptop-3-OpenCore/blob/main/Tools/SurfaceLaptop3_Win10_19041_22.011.9779.0.msi) from this repository mirror. If you haven't downgraded your firmware, this will do that for you too.
 
 After complete, follow the instructions to block device driver installation for the Surface UEFI firmware.
 
