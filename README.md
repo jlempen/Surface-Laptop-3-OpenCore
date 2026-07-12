@@ -192,7 +192,7 @@ done
 
 For some firmware files, the `fwupdmgr` tool may complain that it is unable to find a matching device. This is normal, as not all Surface Laptop 3 models use the exact same hardware, thus the compressed firmware archive contains all the required files for all models.
 
-The Surface Laptop 3 will reboot and downgrade all UEFI firmwares at once, which takes around 5 to 10 minutes. You'll see progress bars with different colours depending on which type of firmware is being flashed.
+When the Surface Laptop 3 reboots, ensure it loads the EFI drive in the OpenCore picker. It will downgrade all UEFI firmwares at once, which takes around 5 to 10 minutes. You'll see progress bars with different colours depending on which type of firmware is being flashed.
 Once the process is done, your laptop will restart a few times and seem to hang on the Surface logo for 20 or 30 seconds each time, this is normal. Then it will restart for good to your OpenCore picker.
 
 Now restart while holding the F4/Volume Up key to check the firmware version in the UEFI. In the Firmware section, `System UEFI` should now show `13.101.140`.
